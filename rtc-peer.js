@@ -28,7 +28,7 @@
  * All done!
  * 
  * Get shared streams :
- * pee2.getPeerConnection().getRemoteStreams();
+ * peer2.getPeerConnection().getRemoteStreams();
  * 
  * Exchange data via channels :
  * peer.connectionChannels();//now you can use send, onmessage handler to exchange messages
@@ -164,6 +164,8 @@
 		_setRemoteHandlers : function(){
 			
 			var peerConnection = this.getPeerConnection();
+			var dataChannels = this.connectionChannels();
+			
 			var _self = this;
 			peerConnection.onaddstream = function(e){
 				typeof _self.onremotestream == 'function' && _self.onremotestream(e.stream);
