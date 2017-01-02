@@ -8,6 +8,7 @@ stream.append(['a','b','c']);//append the unsigned bytes to stream
 stream.append(blob);//append the blob data to stream
 stream.available();//the amount of bytes avaialble to read in the stream
 stream.read(1000);//reads 1000bytes from the stream and returns them as an array buffer. 
+                 //if the buffer has less available bytes it will returns the result as undefined 
 ```
 
 
