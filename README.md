@@ -1,10 +1,14 @@
 Some common utility may needed in the web developnment.
 
+```
+Give examples
+```
+
 <p>
 <h1> ArrayBufferStream</h1>
 <p>With array buffer stream you can create a stream of array buffer with usinged bytes used for buffering operations.</p>
 
-<p>```var stream = new ArrayBufferStream(5*1000);//creates a stream of size ~5kb```</p>
+<p>var stream = new ArrayBufferStream(5*1000);//creates a stream of size ~5kb</p>
 <p>stream.append(arraybuffer);//append the arraybuffer data to buffer</p>
 <p>stream.append(['a','b','c']);//append the unsigned bytes to buffer</p>
 <p>stream.append(blob);//append the blob data to buffer</p>
