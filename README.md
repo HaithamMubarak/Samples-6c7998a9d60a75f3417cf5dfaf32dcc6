@@ -1,4 +1,4 @@
-<h1> ArrayBufferStream</h1>
+<h1> Array Buffer Stream</h1>
 <p>With array buffer stream you can create a stream of array buffer with usinged bytes used for buffering operations.</p>
 
 ```javascript
@@ -18,6 +18,6 @@ stream.read(1000);            //reads 1000bytes from the stream and returns them
 ```
 
 
-<h1> RTCPeer</h1>
+<h1> RTC Peer</h1>
 <p>Simple wrapper for RTCPeerConnection to make creation of RTC connection easy. </p>
 
