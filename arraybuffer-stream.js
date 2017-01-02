@@ -102,7 +102,7 @@
 					var valid = false;
 					if ((Number.isInteger(item) && item <= 255)
 							|| (typeof item == 'string') && item.length == 1
-							&& charCodeAt(0) <= 255) {
+							&& item.charCodeAt(0) <= 255) {
 						valid = true;
 					}
 
@@ -117,7 +117,7 @@
 				for (var i = 0; i < array.length; i++) {
 					var item = array[i];
 					if (typeof item == 'string') {
-						buffer.push(charCodeAt(0));
+						buffer.push(item.charCodeAt(0));
 					} else {
 						buffer.push(item);
 					}
