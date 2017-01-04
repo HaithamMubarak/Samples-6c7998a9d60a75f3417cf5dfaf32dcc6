@@ -27,12 +27,14 @@ stream.read(1000);            //reads 1000bytes from the stream and returns them
 <p>1- Connection initialization</p>
 
 ```javascript
-  var peer1 = new RTCPeer();
-  peer1.createConnection(null,{streams : [stream], channels : ['default']});//null is for ice servers so the code will work on LAN.
-                                                                            //share streams and name the created channel.
-                                                                            //after connection creation you should wait for couple
-                                                                            //of seconds so the ice candiates will be created, or you
-                                                                            //use call back function as thrid parameter.
+var peer1 = new RTCPeer();
+peer1.createConnection(null,{	//null is for ice servers so the code will work on LAN.
+streams : [stream],	 //share streams.
+channels : ['default'] //crate data channels.	
+},callback); 
+//after connection creation you should wait for couple
+//of seconds so the ice candiates will be created, or you
+//use optional call back function as thrid parameter.				
                                                                            
 
 var connectionDescriptor1 = peer1.connectionDescriptor();// Now you should send this json object to the second machine, so the 
