@@ -34,7 +34,7 @@ channels : ['default'] //crate data channels.
 },callback); 
 //after connection creation you should wait for couple
 //of seconds so the ice candiates will be created, or you
-//use optional call back function as thrid parameter.				
+//use optional callback function as thrid parameter.				
                                                                            
 
 var connectionDescriptor1 = peer1.connectionDescriptor();// Now you should send this json object to the second machine, so the 
@@ -45,8 +45,8 @@ var connectionDescriptor1 = peer1.connectionDescriptor();// Now you should send 
 <p>2- Use the first peer conenction descriptor</p>
 ```javascript
   var peer2 = new RTCPeer();  
-  peer2.connect(connectionDescriptor1);//Connects using descriptor, and creates its own connection descriptor.
-							                         //Wait for couple of seconds,or use a callback function.
+  peer2.connect(connectionDescriptor1,callback);//Connects using descriptor, and creates its own connection descriptor.
+				       //Wait for couple of seconds,or use optional callback function.
                                         
   var connectionDescriptor2 = peer2.connectionDescriptor();// Now you should send this json object to the first machine.
 ```
