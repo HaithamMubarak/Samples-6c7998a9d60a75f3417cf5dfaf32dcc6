@@ -107,9 +107,6 @@
 				  },2000);
 			  },this._onerror);
 		}
-		
-			
-
 	
 		this.connect = function(connectionDescriptor,callback){
 			
@@ -205,7 +202,7 @@
 				//negotiated  : true
 			}
 			
-			var dataChannel = this.getPeerConnection().createDataChannel(channelName, options);	    
+			var dataChannel = this.getPeerConnection().createDataChannel(channelName, options);	Â Â Â Â 
 		   
 			dataChannel.onopen = function(e){
 				console.log('channel '+channelName +' is opened');
@@ -226,9 +223,7 @@
 		onremotechannel : function(channel){
 			console.log('new data channel');
 			console.log(channel)
-		},
-		
-		
+		}
 		
 	}	
 	
