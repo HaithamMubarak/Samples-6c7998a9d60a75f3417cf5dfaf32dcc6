@@ -42,4 +42,22 @@ var connectionDescriptor1 = peer1.connectionDescriptor();// Now you should send 
 
 ```
 
+<p>2- Use the first peer conenction descriptor</p>
+
+```javascript
+  var peer2 = new RTCPeer();  
+  peer2.connect(connectionDescriptor1,callback);//Connects using descriptor, and creates its own connection descriptor.
+				       //Wait for couple of seconds,or use optional callback function.
+                                        
+  var connectionDescriptor2 = peer2.connectionDescriptor();// Now you should send this json object to the first machine.
+```
+
+<p>3- Use the second peer conenction descriptor</p>
+
+```javascript
+peer1.connect(connectionDescriptor2);
+```
+
+<p>All done!</p>
+
 
