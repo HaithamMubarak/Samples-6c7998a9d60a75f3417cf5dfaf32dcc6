@@ -24,7 +24,7 @@ var connectionDescriptor1 = peer1.connectionDescriptor();// Now you should send 
 
 ```
 
-<p>2- Use the first peer conenction descriptor</p>
+<p>2- Use the first peer connection descriptor</p>
 
 ```javascript
   var peer2 = new RTCPeer();  
@@ -34,7 +34,7 @@ var connectionDescriptor1 = peer1.connectionDescriptor();// Now you should send 
   var connectionDescriptor2 = peer2.connectionDescriptor();// Now you should send this json object to the first machine.
 ```
 
-<p>3- Use the second peer conenction descriptor</p>
+<p>3- Use the second peer connection descriptor</p>
 
 ```javascript
 peer1.connect(connectionDescriptor2);
@@ -49,7 +49,7 @@ peer1.connect(connectionDescriptor2);
 ```javascript
   peer2.getPeerConnection().getRemoteStreams();
 ```
-<p>Conenction Channels : </p>
+<p>Connection Channels : </p>
 
 ```javascript
   peer.connectionChannels();//Now you can use the created channels,you can use 'send' and 'onmessage' handler to exchange messages
