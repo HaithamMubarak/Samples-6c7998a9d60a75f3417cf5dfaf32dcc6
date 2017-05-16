@@ -1,6 +1,7 @@
 <h1> RTCPeer</h1>
 
 <p>Simple wrapper for RTCPeerConnection to make creation of RTC connection easy. </p>
+
 <p>Suppose you have to peer machines where peer1 is running on first machine and peer2 is running on machine2, you can the following steps to create RTC Connection between these two peers :  </p>
 
 <p>RTCPeer Creation (three steps) : </p>
