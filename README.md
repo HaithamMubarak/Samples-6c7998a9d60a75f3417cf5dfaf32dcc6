@@ -60,4 +60,16 @@ peer1.connect(connectionDescriptor2);
 
 <p>All done!</p>
 
+<p>Once the above steps done, you can access the shared stream and exchange channel messages.</p>
 
+<p>Shared Steams : </p>
+
+```javascript
+  peer2.getPeerConnection().getRemoteStreams();
+```
+<p>Conenction Channels : </p>
+
+```javascript
+  peer.connectionChannels();//Now you can use the created channels,you can use 'send' and 'onmessage' handler to exchange messages
+                            //between the created peers
+```
