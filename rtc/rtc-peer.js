@@ -100,7 +100,7 @@
 				  peerConnection.setLocalDescription(description);
 				  console.log('Offer from localPeerConnection: \n');
 				  console.log(description);			  
-				  localDescriptor.description = description;
+				  localDesciptor.description = description;
 				  
 				  setTimeout(function(){
 					   typeof callback == 'function' && callback(localDescriptor);
@@ -175,7 +175,8 @@
 				}
 			}	
 			
-		    peerConnection.onicecandidate = function(event){			
+		    peerConnection.onicecandidate = function(event){	
+			    console.log(event);
 			   if(event.candidate && event.candidate!=null ){
 					_self.connectionDescriptor().candidates.push(new RTCIceCandidate(event.candidate))
 			   }
