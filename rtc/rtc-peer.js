@@ -1,39 +1,3 @@
-/**
- * RTCPeer : Simple wrapper to makes webrtc interactions easy, works for chrome and firefox.
- * 
- * How to setup : 
- * 
- *
- * var peer1 = new RTCPeer();//peer in the first machine
- * 
- *
- * peer1.createConnection(null,{streams : [stream], channels : ['default']});// null is for ice servers so the code will work on LAN.
- * 																			 //share streams and name the created channel.
- * 																			 //You can use callback function, it just waits for couple of seconds
- * 																			 //so the ice candidates will be set
- * 
- * Now you have the connection descriptor : 
- * var connectionDescriptor1 = peer1.connectionDescriptor();// Now you should send this json object to the second machine
- * 							  							    // which has peer2 object.
- * 
- * var peer2 = new RTCPeer();//peer in the second machine.
- * peer2.connect(connectionDescriptor1);//Connects using descriptor.
- * 										//Wait for couple of seconds,
- * 										//or use a callback function
- * 
- * var connectionDescriptor2 = peer2.connectionDescriptor();// Now you should send this json object to the first machine.
- * 	 
- * peer1.connect(connectionDescriptor2);
- * 
- * All done!
- * 
- * Get shared streams :
- * peer2.getPeerConnection().getRemoteStreams();
- * 
- * Exchange data via channels :
- * peer.connectionChannels();//now you can use send, onmessage handler to exchange messages
- * 
- */
 (function(){
 
 	var RTCPeerConnection = window.RTCPeerConnection || window.webkitRTCPeerConnection;
@@ -96,16 +60,16 @@
 				   }				
 			  }
 			  
-			  peerConnection.createOffer(function(description){
+			  peerConnection.createOffer().then(function(description){
 				  peerConnection.setLocalDescription(description);
 				  console.log('Offer from localPeerConnection: \n');
 				  console.log(description);			  
-				  localDesciptor.description = description;
+				  localDescriptor.description = description;
 				  
 				  setTimeout(function(){
 					   typeof callback == 'function' && callback(localDescriptor);
 				  },2000);
-			  },this._onerror);
+			  });
 		}
 	
 		this.connect = function(connectionDescriptor,callback){
@@ -113,26 +77,40 @@
 			if(!connectionDescriptor){
 				throw new Error('connectionDescriptor is required');
 			}
-			
+
 			if(peerConnection && peerConnection != null){				
-				this._addRemoteConnection(connectionDescriptor);
-				console.log('connection is established');				
-				typeof callback == 'function' && callback('connected');				
+				var promises = this._addRemoteConnection(connectionDescriptor);				
+				Promise.all(promises).then(function(){
+					console.log('connection is established');				
+					typeof callback == 'function' && callback('connected');	
+				});
 			}else{
 				peerConnection = new RTCPeerConnection(connectionDescriptor.servers); 
 				this._setRemoteHandlers();			
-				console.log('Connecting using peer connection...');	
-				this._addRemoteConnection(connectionDescriptor);
+				console.log('Connecting using peer connection...');
 				
-				peerConnection.createAnswer(function(description){
-					peerConnection.setLocalDescription(description);
+				var promises = this._addRemoteConnection(connectionDescriptor);				
+				promises.push(peerConnection.createAnswer());
+				
+				Promise.all(promises).then(function(){
 					console.log('Answer from remotePeerConnection: \n');
+					console.log(arguments[0])
+					description = arguments[0][arguments[0].length -1];
 					console.log(description);
+					console.log('connection is established');
+					peerConnection.setLocalDescription(description);
+					
+					
 					localDescriptor.description = description;
-					setTimeout(function(){
-					   typeof callback == 'function' && callback(localDescriptor);
-					},2000)
-				},this._onerror);				  
+
+					console.log('answer is created.');
+					
+					 setTimeout(function(){
+						   typeof callback == 'function' && callback(localDescriptor);
+					  },2000);
+
+				});
+						  
 			}
 		}
 		
@@ -189,11 +167,15 @@
 			var connectionDescription = connectionDescriptor.description;
 			var connectionCandidates = connectionDescriptor.candidates;
 			
-			peerConnection.setRemoteDescription(connectionDescription.toJSON?connectionDescription:new RTCSessionDescription(connectionDescription));
+			var promises = [];
+			
+			promises.push(peerConnection.setRemoteDescription(connectionDescription.toJSON?connectionDescription:new RTCSessionDescription(connectionDescription)));
 			
 			for(var i=0;i<connectionCandidates.length;i++){	 
-			   peerConnection.addIceCandidate(connectionCandidates[i].toJSON?connectionCandidates[i]:new RTCIceCandidate(connectionCandidates[i]));
+			   promises.push(peerConnection.addIceCandidate(connectionCandidates[i].toJSON?connectionCandidates[i]:new RTCIceCandidate(connectionCandidates[i])));
 			}
+			
+			return promises;
 	
 		},
 		_createDataChannel :  function(channelName,options){
