@@ -185,7 +185,7 @@
 				//negotiated  : true
 			}
 			
-			var dataChannel = this.getPeerConnection().createDataChannel(channelName, options);	    
+			var dataChannel = this.getPeerConnection().createDataChannel(channelName, options);
 		   
 			dataChannel.onopen = function(e){
 				console.log('channel '+channelName +' is opened');
