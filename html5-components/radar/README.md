@@ -27,6 +27,5 @@
 
 <p>Screenshot</p>
 
-<p>
 ![Alt text](rad.png "Optional title")
-</p>
+
