@@ -25,3 +25,6 @@
 	radarComponent.move({x : 10, y : 10});
 ```
 
+
+![Alt text](rad.png "Optional title")
+
