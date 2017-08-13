@@ -19,6 +19,9 @@
 
         });
 		
-		radarComponent.draw();
+	radarComponent.draw();
+
+	// you can update coorinates by using 
+	radarComponent.move({x : 10, y : 10});
 ```
 
