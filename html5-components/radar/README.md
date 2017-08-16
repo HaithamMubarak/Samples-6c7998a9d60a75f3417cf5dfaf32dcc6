@@ -29,5 +29,5 @@
 
 <p>Screenshot</p>
 
-![Alt text](rad.png "Optional title")
+![Alt text](rad.png "Radar sample values")
 
