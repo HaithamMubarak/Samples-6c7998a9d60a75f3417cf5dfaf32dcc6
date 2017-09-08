@@ -1,5 +1,6 @@
-<h1> RTCPeer (It is used local netowrk rtc peer conenctions, but if you add some timeout for connect method to wait until all ices generated, it may work for WAN connections  )</h1>
+<h1> RTCPeer </h1>
 
+<p>Note : this code is just used for local netowrk rtc peer conenctions, but if you add somtimeout until all ices generated it may work</p>
 <p>Simple wrapper for RTCPeerConnection to make creation of RTC connection easy. </p>
 
 <p>Suppose you have to peer machines where peer1 is running on first machine and peer2 is running on machine2, you can the following steps to create RTC Connection between these two peers :  </p>
