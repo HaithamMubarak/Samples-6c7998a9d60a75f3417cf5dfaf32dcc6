@@ -1,4 +1,4 @@
-<h1> RTCPeer</h1>
+<h1> RTCPeer (It is used local netowrk rtc peer conenctions, but if you add some timeout for connect method to wait until all ices generated, it may work for WAN connections  )</h1>
 
 <p>Simple wrapper for RTCPeerConnection to make creation of RTC connection easy. </p>
 
